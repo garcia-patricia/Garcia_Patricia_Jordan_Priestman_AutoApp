@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Roku Flashback</title>
+  <link rel="icon" href="favicon.png" sizes="16x16" type="image/png">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/main.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+</head>
+  <body>
+  
+
+<main id="app">
+<!-- open vue.js app -->
+
+
+<section id="header">
+    <!-- header open -->
+    <img src="images/logo.svg" alt="Flashback by Roku" id="header-logo">
+
+    <!-- menu open -->
+    <div class="menu">
+        <ul>
+            <li>Home</li>
+            <li>Tv</li>
+            <li>Movies</li>
+            <li>Music</li>
+        </ul>
+    </div>
+    <!-- menu close -->
+
+    <!-- search open -->
+    <div class="search">
+            <i class="fas fa-search"></i>
+    </div>
+      <!-- search open -->
+
+    <!-- header close -->
+</section>
+
+<!-- open content -->
+<section id="content">
+
+        <h4 class="recent"> {{ recent }}</h4>
+        <ul>
+            <li v-for="video in videodata">
+                <!-- <button :data-movie="video.id" v-on:click="fetchMore" class="more-details">More Details...</button> -->
+                <a :href="video.video_url" v-on:click="loadMovie">
+                    <img :src="'images/' + video.video_image" alt="">
+                </a>
+                <p>Genre</p>  <!-- add a field to the DB (or subquery another table) and plug data in -->
+            </li>
+        </ul>
+
+        
+<!-- show video on click -->
+        <section class="hidden-movies" :class="{'show-movie' : showDetails }">
+            <h3 class="movie-title"> {{ videotitle }}</h3>
+            <video :src="'videos/' + videosource" autoplay></video>
+            <div class="movie-details">
+                <p> {{ videodescription }} </p>
+            </div>
+        </section>
+        <div class="up-arrow">
+            <span v-on:click="scrollBackUp" :class="{'show-scroller': showDetails }">^</span>
+        </div>
+
+
+
+
+
+
+
+
+</section>
+<!-- close content -->
+
+<footer>
+    <!-- social media -->
+              <div class="socialMedia">
+              <ul>
+                <li><a target="_blank" href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a></li>
+                <li><a target="_blank" href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a></li>
+                <li><a target="_blank" href="https://www.behance.net/"><i class="fab fa-behance"></i></a></li>
+            </ul>
+          </div> 
+          <!-- end social media -->
+          <p class="copyright">Copyright 2018. All rights reserved Flashback.</p>
+</footer>
+</main><!-- close vue.js app -->
+  <script src="js/master.js"></script>
+  </body>
+</html>
