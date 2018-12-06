@@ -1,30 +1,70 @@
 (()=> {
-    function getData(){
-        let targetURL = `./includes/connect.php?modelNo=${this.id}`;
-        //event handler for car when clicked it would change modelNo=X
-        // for each 'car' add event handler, click, run function
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            recent : "Recently Added",
+            videodata : [],
+            singlemoviedata : [],
 
-        fetch(targetURL) // go get the data and bring it back
-        .then(res => res.json()) // turn the result into a plai JS object
-        .then(data => {
-            console.log(data);
-        // run a function to parse our data
-        showCarData(data[0]);
-        }) // lets see what we got
-        .catch(function(error){
-        console.log(error); //if anything broke, log it into the console
-        });
-    }
-    function showCarData(data){
-        // parse the DB info and put it where it needs to go
-        const {modelName, pricing, modelDetails} = data; // destructuring assignment => MDN JS destructuring
+            videotitle : "",
+            videosource : "",
+            videodescription : "",
+            showDetails : false
+        },
 
-        // grab the elements we need,and populate them with the data
-        document.querySelector('.modelName').textContent =  modelName;
-        document.querySelector('.priceInfo').textContent =  `$ ${pricing}.00`;
-        document.querySelector('.modelDetails').textContent =  modelDetails;
+        created : function() {
+            this.fetchMovieData(null);
+        },
 
-    }
-    getData(); // trigger the getData function
+        methods : {
+            fetchMore(e) {
+                this.fetchMovieData(e.currentTarget.dataset.movie); // this will be a number (id)
+            },
+
+            loadMovie(e) {
+                // stub
+                e.preventDefault();
+
+                dataKey = e.currentTarget.getAttribute('href');
+
+                currentData = this.videodata.filter(video => video.video_url === dataKey);
+
+                this.videotitle = currentData[0].video_name;
+                this.videoYear = currentData[0].video_year;
+                this.videodescription = currentData[0].video_description;
+                this.videosource = dataKey;
+
+                this.showDetails = true;
+
+                setTimeout(function() { window.scrollTo(0, 1200); }, 500);
+            },
+
+            scrollBackUp() {
+                window.scrollTo(0, 0);
+                this.showDetails = false;
+                this.videsource = "";
+            },
+
+            fetchMovieData(movie) {
+                url = movie ? `./includes/index.php?movie=${movie}` : './includes/index.php';
+
+                fetch(url) // pass in the one or many query
+                .then(res => res.json())
+                .then(data => {
+                    if (movie) {
+                        // getting one movie, so use the single array
+                        console.log(data);
+                        this.singlemoviedata = data;
+                    } else {
+                        // push all the video (or portfolio content) into the video array
+                        console.log(data);
+                        this.videodata = data;
+                    }
+                })
+                .catch(function(error) {
+                    console.log(error);
+                });
+            }
+        }
+    });
 })();
-
