@@ -17,10 +17,21 @@
         },
 
         methods : {
+            login(){
+                //stub
+            },
+            profiles(){
+
+            },
+            filter(){
+
+            },
+            search(){
+
+            },
             fetchMore(e) {
                 this.fetchMovieData(e.currentTarget.dataset.movie); // this will be a number (id)
             },
-
             loadMovie(e) {
                 // stub
                 e.preventDefault();

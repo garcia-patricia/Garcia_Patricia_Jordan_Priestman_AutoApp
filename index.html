@@ -12,41 +12,60 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 </head>
   <body>
-  
+
+
 
 <main id="app">
 <!-- open vue.js app -->
 
 
-<section id="header">
-    <!-- header open -->
-    <img src="images/logo.svg" alt="Flashback by Roku" id="header-logo">
+<header>
+        <nav role="navigation">
+                <div id="menuToggle">
+                  <input type="checkbox" />
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <ul id="menu">
+                    <a href="#"><li>Home</li></a>
+                    <a href="#"><li>TV</li></a>
+                    
+                    <a href="#"><li>Movies</li></a>
+                    <a href="#"><li>Music</li></a>
+                  </ul>
+                </div>
+              </nav>
+    <!-- wrapper starts -->
+    <div class="wrapper">
+<!-- header open -->
+<img src="images/logo.svg" alt="Flashback by Roku" id="header-logo">
 
-    <!-- menu open -->
-    <div class="menu">
-        <ul>
-            <li>Home</li>
-            <li>Tv</li>
-            <li>Movies</li>
-            <li>Music</li>
-        </ul>
-    </div>
-    <!-- menu close -->
-
-    <!-- search open -->
-    <div class="search">
-            <i class="fas fa-search"></i>
-    </div>
-      <!-- search open -->
-
-    <!-- header close -->
-</section>
+<!-- menu open -->
+<div class="menu">
+    <ul>
+        <li>Home</li>
+        <li>Tv</li>
+        <li>Movies</li>
+        <li>Music</li>
+    </ul>
+</div>
+<!-- menu close -->
+<!-- search open -->
+<div class="search">
+        <i class="fas fa-search"></i>
+</div>
+  <!-- search open -->
+<!-- header close -->
+</header>
+</div>
+    <!-- close wrapper -->
+    
 
 <!-- open content -->
 <section id="content">
 
         <h4 class="recent"> {{ recent }}</h4>
-        <ul>
+        <ul class="video-display">
             <li v-for="video in videodata">
                 <!-- <button :data-movie="video.id" v-on:click="fetchMore" class="more-details">More Details...</button> -->
                 <a :href="video.video_url" v-on:click="loadMovie">
@@ -81,16 +100,19 @@
 
 <footer>
     <!-- social media -->
-              <div class="socialMedia">
-              <ul>
-                <li><a target="_blank" href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a></li>
-                <li><a target="_blank" href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a></li>
-                <li><a target="_blank" href="https://www.behance.net/"><i class="fab fa-behance"></i></a></li>
-            </ul>
-          </div> 
-          <!-- end social media -->
-          <p class="copyright">Copyright 2018. All rights reserved Flashback.</p>
-</footer>
+    <div class="wrapper">
+            <div class="socialMedia">
+                    <ul>
+                      <li><a target="_blank" href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a></li>
+                      <li><a target="_blank" href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a></li>
+                      <li><a target="_blank" href="https://www.behance.net/"><i class="fab fa-behance"></i></a></li>
+                  </ul>
+                </div> 
+                <!-- end social media -->
+                <p class="copyright">Copyright 2018. All rights reserved Flashback.</p>
+      </footer>
+    </div>
+              
 </main><!-- close vue.js app -->
   <script src="js/master.js"></script>
   </body>
