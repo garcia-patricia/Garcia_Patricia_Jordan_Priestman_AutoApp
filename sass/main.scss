@@ -186,3 +186,19 @@ padding: 1%;
 .copyright {
     grid-row:1;
 }
+
+
+// content //
+#content {
+  margin: 0 auto;
+  width: 95%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.video-display ul{list-style-type: none;}
+.video-display li {float:left;}
+.video-display li {
+  display: inline;
+}
+
+#thumbnail {width: 50%;}
